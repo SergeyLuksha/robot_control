@@ -26,7 +26,7 @@ public:
     UdpRobotNode() : Node("udp_bridge_node"), io_context_(), socket_(io_context_, udp::endpoint(udp::v4(), 4211)) {
 
         // Настройка адреса ESP32 (проверь IP!)
-        esp32_endpoint_ = udp::endpoint(boost::asio::ip::make_address("192.168.10.212"), 4210);
+        esp32_endpoint_ = udp::endpoint(boost::asio::ip::make_address("192.168.10.42"), 4210);
 
         // Издатель для JointStates
         joint_pub_ = this->create_publisher<sensor_msgs::msg::JointState>("joint_states", 10);
