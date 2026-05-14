@@ -7,13 +7,13 @@ class JoystickTeleopNode : public rclcpp::Node {
 public:
     JoystickTeleopNode() : Node("joystick_teleop_node") {
         // Параметры для настройки чувствительности
-        this->declare_parameter("linear_scale", 0.5); // м/с
-        this->declare_parameter("angular_scale", 1.0); // рад/с
+        this->declare_parameter("linear_scale", 50.0); // м/с
+        this->declare_parameter("angular_scale", 50.0); // рад/с
 
         // Индексы осей (для Logitech F710: левый стик вверх/вниз и левый стик влево/вправо)
         // В режиме XInput: ось 1 - левый стик верт., ось 0 - левый стик гор.
         this->declare_parameter("axis_linear", 1);
-        this->declare_parameter("axis_angular", 3); // часто правый стик или 0 для левого
+        this->declare_parameter("axis_angular", 0); // часто правый стик или 0 для левого
 
         joy_sub_ = this->create_subscription<sensor_msgs::msg::Joy>(
             "joy", 10, std::bind(&JoystickTeleopNode::joy_callback, this, std::placeholders::_1));
